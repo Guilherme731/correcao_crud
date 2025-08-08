@@ -2,7 +2,7 @@
 // Listagem com erro de lógica (ordem incorreta e falta de conexão)
 include("conexao.php");
 
-$sql = "SELECT * FORM usuarios"; // Erro de SQL: FORM ao invés de FROM
+$sql = "SELECT * FROM usuarios";
 $resultado = mysqli_query($conn, $sql);
 
 echo "<h1>Lista de Usuários</h1>";
