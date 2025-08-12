@@ -4,7 +4,7 @@ include("conexao.php");
 $sql = "SELECT * FROM usuarios";
 $resultado = mysqli_query($conn, $sql);
 
-if ($result->num_rows > 0) {
+if ($resultado->num_rows > 0) {
 echo "<h1>Lista de Usuários</h1>";
 echo "<table border ='1'>
         <tr>
