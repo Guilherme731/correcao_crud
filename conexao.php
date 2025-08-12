@@ -1,5 +1,5 @@
 <?php
-// Conexão com o banco (contém erro de variável e de conexão)
+// Conexão com o banco
 $host = "localhost";
 $user = "root";
 $password = "";

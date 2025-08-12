@@ -2,17 +2,33 @@
 include("conexao.php");
 
 $id = $_GET["id"];
-$sql = "SELECT * FROM usuarios WHERE id = $id";
-$res = mysqli_query($conn, $sql);
+$stmt = $conn->prepare("SELECT nome, email FROM usuarios WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$res = $stmt->get_result();
 $dado = mysqli_fetch_assoc($res);
+
+if (!$dado) {
+    die("Usuário não encontrado.");
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
     $email = $_POST["email"];
 
-    $sql = "UPDATE usuarios SET nome='$nome', email='$email' WHERE id=$id";
-    mysqli_query($conn, $sql);
-    header("Location: index.php");
+    if (empty($nome) || empty($email)) {
+        echo "Existem campos não preenchidos!";
+    }else{
+        $stmt2 = $conn->prepare("UPDATE usuarios SET nome=?, email=? WHERE id=?");
+        $stmt2->bind_param("ssi", $nome, $email, $id);
+        if ($stmt2->execute()) {
+            header("Location: index.php");
+        }else{
+            echo "Erro ao cadastrar!";
+        }
+        
+    }
+    
 }
 ?>
 

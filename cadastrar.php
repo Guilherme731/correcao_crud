@@ -6,12 +6,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST["nome"];
     $email = $_POST["email"];
 
-    $sql = "INSERT INTO usuarios (nome, email) VALUES ('$nome', '$email')";
-    $res = mysqli_query($conn, $sql);
-    if ($res) {
-        echo "Usuário cadastrado com sucesso!";
+    if (empty($nome) || empty($email)) {
+        echo "Existem campos não preenchidos!";
     }else{
-        echo "Erro ao cadastrar!";
+        $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
+        $stmt->bind_param("ss", $nome, $email);
+        if ($stmt->execute()) {
+            echo "Usuário cadastrado com sucesso!";
+        }else{
+            echo "Erro ao cadastrar!";
+        }
     }
 }
 
