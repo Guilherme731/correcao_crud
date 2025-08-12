@@ -35,5 +35,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="POST" action="editar.php?id=<?= $id ?>">
     Nome: <input type="text" name="nome" value="<?= $dado['nome'] ?>"><br>
     Email: <input type="email" name="email" value="<?= $dado['email'] ?>"><br>
-    <input type="submit" value="Salvar">
+    <button type="submit">Salvar</button>
 </form>

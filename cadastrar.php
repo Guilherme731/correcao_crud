@@ -1,5 +1,4 @@
 <?php
-// Cadastro com falta de validação
 include("conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,5 +23,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method="POST" action="cadastrar.php">
     Nome: <input type="text" name="nome"><br>
     Email: <input type="email" name="email"><br>
-    <input type="submit" value="Cadastrar">
+    <button type="submit">Cadastrar</button>
 </form>
